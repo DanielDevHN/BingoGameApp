@@ -32,6 +32,7 @@ public class BingoGameApp {
     }
 
     public void mcartilla() {
+        System.out.println("JUGAR BINGO");
         System.out.println("---------------------------------------------------------------------------------");
         for (int i = 0; i < this.Lb.size(); i++) {
             System.out.println("|\t" + this.Lb.get(i) + "\t|\t" + this.Li.get(i) + "\t|\t" + this.Ln.get(i) + "\t|\t" + this.Lg.get(i) + "\t|\t" + this.Lo.get(i) + "\t|\t");
@@ -58,11 +59,11 @@ public class BingoGameApp {
         bolillas[3] = "G";
         bolillas[4] = "O";
 
-        Random rd = new Random();
+        Random rnd = new Random();
 
-        String bolilla = bolillas[rd.nextInt(5)];
+        String bolilla = bolillas[rnd.nextInt(5)];
 
-        int numero = rd.nextInt(15);
+        int numero = rnd.nextInt(15);
         switch (bolilla) {
             case "B" ->
                 this.xcartilla(Lb, numero);
@@ -83,7 +84,7 @@ public class BingoGameApp {
                 this.xcartilla(Lo, numero);
             }
         }
-        System.out.println(bolilla + numero);
+        System.out.println("NUMERO A JUGAR: "+ (bolilla + numero));
     }
 
     public ArrayList xcartilla(ArrayList lista, int numero) {
