@@ -21,17 +21,17 @@ public class BingoGameApp {
 
     public boolean bingo = false; //ternimar juego
 
-    public void ilistas() {
+    public void llenarArrayList() {
         this.lstB.add("B");
         this.lstI.add("I");
         this.lstN.add("N");
         this.lstG.add("G");
         this.lstO.add("O");
 
-        this.glista();
+        this.cargarLista();
     }
 
-    public void mcartilla() {
+    public void cartillaJugador() {
         System.out.println("JUGAR BINGO");
         System.out.println("---------------------------------------------------------------------------------");
         for (int i = 0; i < this.lstB.size(); i++) {
@@ -40,7 +40,7 @@ public class BingoGameApp {
         }
     }
 
-    public void glista() {
+    public void cargarLista() {
         Random rd = new Random();
         for (int i = 0; i < 5; i++) {
             this.lstB.add(rd.nextInt(15));
@@ -51,7 +51,7 @@ public class BingoGameApp {
         }
     }
 
-    public void bolillas() {
+    public void bolillasJugador() {
         String[] bolillas = new String[5];
         bolillas[0] = "B";
         bolillas[1] = "I";
@@ -98,7 +98,7 @@ public class BingoGameApp {
 
     public static void main(String[] args) {
         BingoGameApp bn = new BingoGameApp();
-        bn.ilistas();
+        bn.llenarArrayList();
 
         Scanner sca = new Scanner(System.in);
         int opcion;
@@ -115,8 +115,8 @@ public class BingoGameApp {
         while (!bn.bingo) {
             switch (opcion) {
                 case 1 -> {
-                    bn.mcartilla();
-                    bn.bolillas();
+                    bn.cartillaJugador();
+                    bn.bolillasJugador();
 
                     System.out.println("Presiona la tecla ENTER para rellenar cada espacio.");
                     System.out.println("En cuanto llenes la cartilla escribe la palabra BINGO: ");
@@ -129,16 +129,20 @@ public class BingoGameApp {
                     System.out.println("Lo siento, mi creador aun esta desarrollando esta opcion");
                     System.out.println("Por lo tanto, podras jugar a Full House");
                     
-                    bn.mcartilla();
-                    bn.bolillas();
+                    bn.cartillaJugador();
+                    bn.bolillasJugador();
 
                     System.out.println("Presiona la tecla ENTER para rellenar cada espacio.");
                     System.out.println("En cuanto llenes la cartilla escribe la palabra BINGO: ");
                     String bingo = sca.nextLine();
                     if (bingo.equalsIgnoreCase("bingo")) {
+                        System.out.println("FELICIDADES! Has ganado!");
                         bn.bingo = !bn.bingo;
                     }
+                    
                 }
+
+
             }
         }
     }
