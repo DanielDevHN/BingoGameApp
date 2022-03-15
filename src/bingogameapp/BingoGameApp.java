@@ -52,16 +52,16 @@ public class BingoGameApp {
     }
 
     public void bolillasJugador() {
-        String[] bolillas = new String[5];
-        bolillas[0] = "B";
-        bolillas[1] = "I";
-        bolillas[2] = "N";
-        bolillas[3] = "G";
-        bolillas[4] = "O";
+        String[] bolillasCartilla = new String[5];
+        bolillasCartilla[0] = "B";
+        bolillasCartilla[1] = "I";
+        bolillasCartilla[2] = "N";
+        bolillasCartilla[3] = "G";
+        bolillasCartilla[4] = "O";
 
         Random rnd = new Random();
 
-        String bolilla = bolillas[rnd.nextInt(5)];
+        String bolilla = bolillasCartilla[rnd.nextInt(5)];
 
         int numero = rnd.nextInt(15);
         switch (bolilla) {
