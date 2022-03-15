@@ -138,12 +138,10 @@ public class BingoGameApp {
                     if (bingo.equalsIgnoreCase("bingo")) {
                         System.out.println("FELICIDADES! Has ganado!");
                         bn.bingo = !bn.bingo;
-                    }
-                    
+                    }  
                 }
-
-
             }
+            System.out.println("Opcion no valida");
         }
     }
 }
