@@ -9,24 +9,24 @@ import java.util.Scanner;
  * @author Daniel-Reyes
  */
 public class BingoGameApp {
+
     /**
      * @param args the command line arguments
      */
+    ArrayList lstB = new ArrayList();
+    ArrayList lstI = new ArrayList();
+    ArrayList lstN = new ArrayList();
+    ArrayList lstG = new ArrayList();
+    ArrayList lstO = new ArrayList();
 
-    ArrayList Lb = new ArrayList();
-    ArrayList Li = new ArrayList();
-    ArrayList Ln = new ArrayList();
-    ArrayList Lg = new ArrayList();
-    ArrayList Lo = new ArrayList();
-
-    boolean bingo = false; //ternimar juego
+    public boolean bingo = false; //ternimar juego
 
     public void ilistas() {
-        this.Lb.add("B");
-        this.Li.add("I");
-        this.Ln.add("N");
-        this.Lg.add("G");
-        this.Lo.add("O");
+        this.lstB.add("B");
+        this.lstI.add("I");
+        this.lstN.add("N");
+        this.lstG.add("G");
+        this.lstO.add("O");
 
         this.glista();
     }
@@ -34,8 +34,8 @@ public class BingoGameApp {
     public void mcartilla() {
         System.out.println("JUGAR BINGO");
         System.out.println("---------------------------------------------------------------------------------");
-        for (int i = 0; i < this.Lb.size(); i++) {
-            System.out.println("|\t" + this.Lb.get(i) + "\t|\t" + this.Li.get(i) + "\t|\t" + this.Ln.get(i) + "\t|\t" + this.Lg.get(i) + "\t|\t" + this.Lo.get(i) + "\t|\t");
+        for (int i = 0; i < this.lstB.size(); i++) {
+            System.out.println("|\t" + this.lstB.get(i) + "\t|\t" + this.lstI.get(i) + "\t|\t" + this.lstN.get(i) + "\t|\t" + this.lstG.get(i) + "\t|\t" + this.lstO.get(i) + "\t|\t");
             System.out.println("---------------------------------------------------------------------------------");
         }
     }
@@ -43,11 +43,11 @@ public class BingoGameApp {
     public void glista() {
         Random rd = new Random();
         for (int i = 0; i < 5; i++) {
-            this.Lb.add(rd.nextInt(15));
-            this.Li.add(rd.nextInt(15) + 15);
-            this.Ln.add(rd.nextInt(15) + 30);
-            this.Lg.add(rd.nextInt(15) + 45);
-            this.Lo.add(rd.nextInt(15) + 60);
+            this.lstB.add(rd.nextInt(15));
+            this.lstI.add(rd.nextInt(15) + 15);
+            this.lstN.add(rd.nextInt(15) + 30);
+            this.lstG.add(rd.nextInt(15) + 45);
+            this.lstO.add(rd.nextInt(15) + 60);
         }
     }
 
@@ -66,28 +66,29 @@ public class BingoGameApp {
         int numero = rnd.nextInt(15);
         switch (bolilla) {
             case "B" ->
-                this.xcartilla(Lb, numero);
+                this.cartillaB(lstB, numero);
             case "I" -> {
                 numero += 15;
-                this.xcartilla(Li, numero);
+                this.cartillaB(lstI, numero);
             }
             case "N" -> {
                 numero += 30;
-                this.xcartilla(Ln, numero);
+                this.cartillaB(lstN, numero);
             }
             case "G" -> {
                 numero += 45;
-                this.xcartilla(Lg, numero);
+                this.cartillaB(lstG, numero);
             }
             case "O" -> {
                 numero += 60;
-                this.xcartilla(Lo, numero);
+                this.cartillaB(lstO, numero);
             }
+
         }
-        System.out.println("NUMERO A JUGAR: "+ (bolilla + numero));
+        System.out.println("NUMERO A JUGAR: " + numero);
     }
 
-    public ArrayList xcartilla(ArrayList lista, int numero) {
+    public ArrayList cartillaB(ArrayList lista, int numero) {
         int pos = lista.indexOf(numero);
         if (pos >= 0) {
             lista.set(pos, "X");
@@ -99,15 +100,45 @@ public class BingoGameApp {
         BingoGameApp bn = new BingoGameApp();
         bn.ilistas();
 
-        Scanner sc = new Scanner(System.in);
-        while (!bn.bingo) {
-            bn.mcartilla();
-            bn.bolillas();
+        Scanner sca = new Scanner(System.in);
+        int opcion;
 
-            System.out.println("Es bingo?");
-            String bingo = sc.nextLine();
-            if (bingo.equalsIgnoreCase("bingo")) {
-                bn.bingo = !bn.bingo;
+        System.out.println("------------------------------------------------------------");
+        System.out.println("              Bienvenido al juego de Bingo Java             ");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("Tienes dos formas de jugar");
+        System.out.println("1. Jugar Full House");
+        System.out.println("2. Linea");
+        System.out.println("Elige una opcion para continuar: ");
+        opcion = sca.nextInt();
+
+        while (!bn.bingo) {
+            switch (opcion) {
+                case 1 -> {
+                    bn.mcartilla();
+                    bn.bolillas();
+
+                    System.out.println("Presiona la tecla ENTER para rellenar cada espacio.");
+                    System.out.println("En cuanto llenes la cartilla escribe la palabra BINGO: ");
+                    String bingo = sca.nextLine();
+                    if (bingo.equalsIgnoreCase("bingo")) {
+                        bn.bingo = !bn.bingo;
+                    }
+                }
+                case 2 -> {
+                    System.out.println("Lo siento, mi creador aun esta desarrollando esta opcion");
+                    System.out.println("Por lo tanto, podras jugar a Full House");
+                    
+                    bn.mcartilla();
+                    bn.bolillas();
+
+                    System.out.println("Presiona la tecla ENTER para rellenar cada espacio.");
+                    System.out.println("En cuanto llenes la cartilla escribe la palabra BINGO: ");
+                    String bingo = sca.nextLine();
+                    if (bingo.equalsIgnoreCase("bingo")) {
+                        bn.bingo = !bn.bingo;
+                    }
+                }
             }
         }
     }
