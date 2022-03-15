@@ -140,8 +140,7 @@ public class BingoGameApp {
                         bn.bingo = !bn.bingo;
                     }  
                 }
-            }
-            System.out.println("Opcion no valida");
+            }  
         }
     }
 }
