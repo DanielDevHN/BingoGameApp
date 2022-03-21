@@ -19,7 +19,7 @@ public class BingoGameApp {
     ArrayList lstG = new ArrayList();
     ArrayList lstO = new ArrayList();
 
-    public boolean bingo = false; //ternimar juego
+    public boolean bingo = false; //ternima el juego
 
     public void llenarArrayList() {
         this.lstB.add("B");
